@@ -1,4 +1,8 @@
 ---
+import Hero from '../componentes/Hero.astro';
+import Proyecto from '../componentes/Proyectos.astro';
+import Stack from '../componentes/Stack.astro';
+import Contacto from '../componentes/Contacto.astro';
 ---
 
 <html lang="en">
@@ -6,11 +10,38 @@
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Portafolio | Desarrolladora Ana Luz Ulariaga</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<Hero />
+		<Proyecto />
+		<Stack />
+		<Contacto />
 	</body>
 </html>
+
+<style is:global>
+	body {
+		margin: 0;
+		padding: 0;
+		font-family: 'Inter', sans-serif;
+		background-color: var(--color-5);
+		color: var(--color-1);           
+	}
+
+	:root {
+		--color-1: #F5F3FF;
+		--color-2: #DDD6FE;
+		--color-3: #8B5CF6;
+		--color-4: #5B21B6;
+		--color-5: #1E1B4B;
+	}
+
+</style>

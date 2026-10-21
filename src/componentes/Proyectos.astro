@@ -1,0 +1,337 @@
+---
+    import { 
+    ShoppingBag, 
+    Database, 
+    Server, 
+    Cpu, 
+    Code, 
+    Palette, 
+    FileText, 
+    ExternalLink,
+    ChevronLeft,
+    ChevronRight,
+    X
+    } from 'lucide-astro';
+import EyeAstroComponent from 'lucide-astro/Eye';
+---
+
+<section id="proyectos" class="proyectos">
+    <h2>Proyectos</h2>
+    <div class="tarjeta">
+        <div class="header-tarjeta">
+            <ShoppingBag size={32} />
+            <h3>Sistema POS (punto de Venta) "Merkatu"</h3>
+        </div>
+        <p>Sistema web de gestión comercial para control de inventario, registro de ventas, administración 
+            de productos con persistencia en base de datos, control  de vencimientos, 
+            reportes de kpis, gestión de emepleados, control de caja, generación de etiquetas de precio
+            para comercios.</p>
+        <div class="tags">
+            <span><Database size={14} /> MySQL</span>
+            <span><Server size={14} /> NodeJS</span>
+            <span><Cpu size={14} /> Express</span>
+            <span><Code size={14} /> JavaScript</span>
+            <span><Palette size={14} /> CSS</span>
+            <span><FileText size={14} /> EJS</span>
+        </div>
+
+        <div class="acciones">
+            <a href="https://github.com/anitassj" target="_blank" rel="noopener" class="btn-link">
+                Visitar repositorio <ExternalLink size={16} />
+            </a>
+            <!-- ? recordar: modificar con el link del proyecto -->
+            <a href="https://github.com/anitassj" target="_blank" rel="noopener" class="btn-link">
+                Visitar proyecto <ExternalLink size={16} />
+            </a>
+            <button type="button" class="btn-link" aria-haspopup="dialog" aria-controls="galeria-merkatu">
+                Vista rápida <EyeAstroComponent size={16} />
+            </button>
+        </div>
+    </div>
+
+    <dialog class="galeria" id="galeria-merkatu" aria-labelledby="titulo-galeria">
+        <div class="galeria-contenido">
+            <header class="galeria-header">
+                <div>
+                    <p class="galeria-etiqueta">Vista rápida</p>
+                    <h3 id="titulo-galeria">Sistema POS Merkatu</h3>
+                </div>
+                <button type="button" class="galeria-cerrar" aria-label="Cerrar galería">
+                    <X size={20} />
+                </button>
+            </header>
+
+            <div class="galeria-visor">
+                <figure class="galeria-slide" aria-label="1 de 3: Panel principal">
+                    <img src="/imagenes/merkatu/panel-demo.svg" alt="Demo del panel principal de Merkatu con resumen de ventas y productos" />
+                    <figcaption>Panel principal</figcaption>
+                </figure>
+                <figure class="galeria-slide" aria-label="2 de 3: Gestión de inventario" hidden>
+                    <img src="/imagenes/merkatu/inventario-demo.svg" alt="Demo de la pantalla de inventario de Merkatu con una lista de productos" />
+                    <figcaption>Gestión de inventario</figcaption>
+                </figure>
+                <figure class="galeria-slide" aria-label="3 de 3: Registro de ventas" hidden>
+                    <img src="/imagenes/merkatu/ventas-demo.svg" alt="Demo de la pantalla de ventas de Merkatu con el detalle de una compra" />
+                    <figcaption>Registro de ventas</figcaption>
+                </figure>
+
+                <button type="button" class="galeria-control galeria-anterior" aria-label="Imagen anterior">
+                    <ChevronLeft size={22} />
+                </button>
+                <button type="button" class="galeria-control galeria-siguiente" aria-label="Imagen siguiente">
+                    <ChevronRight size={22} />
+                </button>
+            </div>
+            <p class="galeria-contador" aria-live="polite">1 / 3</p>
+        </div>
+    </dialog>
+</section>
+
+<style>
+    .proyectos { 
+        padding: 4rem 1rem; 
+        max-width: 800px; 
+        margin: 0 auto; 
+    }
+
+    h2 { 
+        color: var(--color-1); 
+        text-align: center; 
+        margin-bottom: 2rem; 
+    }
+
+    /* contenedor de la tarjeta */
+    .tarjeta { 
+        background-color: var(--color-5); 
+        border: 1px solid var(--color-4); 
+        border-radius: 12px; 
+        padding: 2rem; 
+        transition: border-color 0.3s ease; 
+        justify-content: center;
+    }
+
+    .tarjeta:hover { 
+        border-color: var(--color-3); 
+    }
+
+    /* contenedor del título */
+    .header-tarjeta { 
+        display: flex; 
+        align-items: center; 
+        gap: 1rem; 
+        color: var(--color-3); 
+        margin-bottom: 1rem; 
+        justify-content: center;
+    }
+
+    .header-tarjeta h3 { 
+        color: var(--color-1); 
+        margin: 0; 
+    }
+
+    /* tags de tecnologías utilizadas */
+    .tags { 
+        display: flex; 
+        gap: 0.5rem; 
+        margin: 1.5rem 0; 
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+
+    .tags span { 
+        display: inline-flex; 
+        align-items: center; 
+        gap: 0.3rem; 
+        background: var(--color-3); 
+        color: var(--color-2); 
+        padding: 0.25rem 0.75rem; 
+        border-radius: 9999px; 
+        font-size: 0.85rem; 
+    }
+
+    /* botones y links de acciones (ver repo, ver proyecto corriendo, modal de vista rápida) */
+    .acciones {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .btn-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: transparent;
+        cursor: pointer;
+        font-family: inherit;
+        color: var(--color-1);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--color-4);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-link:hover {
+        border-color: var(--color-3);
+        background-color: var(--color-3);
+    }
+
+    /* modal para la galería de imagenes del botón 'vista rápida'  */
+    .galeria {
+        width: min(900px, calc(100% - 2rem));
+        max-width: none;
+        max-height: min(90vh, 800px);
+        padding: 0;
+        overflow: auto;
+        color: var(--color-1);
+        background: var(--color-5);
+        border: 1px solid var(--color-4);
+        border-radius: 16px;
+    }
+
+    .galeria::backdrop {
+        background: rgb(8 12 24 / 78%);
+        backdrop-filter: blur(4px);
+    }
+
+    .galeria-contenido {
+        padding: clamp(1rem, 4vw, 2rem);
+    }
+
+    .galeria-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .galeria-etiqueta {
+        margin: 0 0 0.25rem;
+        color: var(--color-3);
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    .galeria-header h3 {
+        margin: 0;
+        color: var(--color-1);
+    }
+
+    .galeria-cerrar,
+    .galeria-control {
+        display: grid;
+        place-items: center;
+        color: var(--color-1);
+        background: var(--color-5);
+        border: 1px solid var(--color-4);
+        border-radius: 999px;
+        cursor: pointer;
+    }
+
+    .galeria-cerrar {
+        width: 2.5rem;
+        height: 2.5rem;
+        flex: 0 0 auto;
+    }
+
+    .galeria-visor {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--color-4);
+        border-radius: 12px;
+        background: #101827;
+    }
+
+    .galeria-slide {
+        margin: 0;
+    }
+
+    .galeria-slide[hidden] {
+        display: none;
+    }
+
+    .galeria-slide img {
+        display: block;
+        width: 100%;
+        max-height: 65vh;
+        object-fit: contain;
+    }
+
+    .galeria-slide figcaption {
+        padding: 0.75rem 1rem;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .galeria-control {
+        position: absolute;
+        top: 50%;
+        width: 2.75rem;
+        height: 2.75rem;
+        transform: translateY(-50%);
+    }
+
+    .galeria-control:hover,
+    .galeria-cerrar:hover {
+        border-color: var(--color-3);
+        background: var(--color-3);
+    }
+
+    .galeria-anterior {
+        left: 0.75rem;
+    }
+
+    .galeria-siguiente {
+        right: 0.75rem;
+    }
+
+    .galeria-contador {
+        margin: 0.75rem 0 0;
+        text-align: center;
+        font-size: 0.85rem;
+        opacity: 0.8;
+    }
+</style>
+
+<script>
+    // modal para la galería de imagenes del botón 'vista rápida'
+    const dialog = document.querySelector<HTMLDialogElement>('#galeria-merkatu');
+
+    if (dialog) {
+        const slides = Array.from(dialog.querySelectorAll<HTMLElement>('.galeria-slide'));
+        const counter = dialog.querySelector<HTMLElement>('.galeria-contador');
+        const openButton = document.querySelector<HTMLButtonElement>('[aria-controls="galeria-merkatu"]');
+        const closeButton = dialog.querySelector<HTMLButtonElement>('.galeria-cerrar');
+        const previousButton = dialog.querySelector<HTMLButtonElement>('.galeria-anterior');
+        const nextButton = dialog.querySelector<HTMLButtonElement>('.galeria-siguiente');
+        let currentIndex = 0;
+
+        const showSlide = (index: number) => {
+            currentIndex = (index + slides.length) % slides.length;
+            slides.forEach((slide, slideIndex) => {
+                slide.hidden = slideIndex !== currentIndex;
+                slide.setAttribute('aria-label', `${slideIndex + 1} de ${slides.length}: ${slide.querySelector('figcaption')?.textContent}`);
+            });
+            if (counter) counter.textContent = `${currentIndex + 1} / ${slides.length}`;
+        };
+
+        showSlide(0);
+        openButton?.addEventListener('click', () => {
+            showSlide(0);
+            dialog.showModal();
+        });
+        closeButton?.addEventListener('click', () => dialog.close());
+        previousButton?.addEventListener('click', () => showSlide(currentIndex - 1));
+        nextButton?.addEventListener('click', () => showSlide(currentIndex + 1));
+        dialog.addEventListener('click', (event) => {
+            if (event.target === dialog) dialog.close();
+        });
+    }
+</script>

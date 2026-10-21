@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Demo del registro de ventas de Merkatu</title>
+  <desc id="desc">Punto de venta con catálogo de productos y detalle del carrito de compra.</desc>
+  <rect width="1200" height="720" fill="#f2f5fa"/>
+  <rect width="1200" height="72" fill="#fff"/>
+  <rect x="28" y="20" width="34" height="34" rx="10" fill="#4f46e5"/>
+  <path d="M37 30h16v16H37z" fill="none" stroke="#fff" stroke-width="2"/>
+  <text x="76" y="45" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#182235">merkatu</text>
+  <text x="258" y="128" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#182235">Nueva venta</text>
+  <text x="258" y="158" font-family="Arial,sans-serif" font-size="14" fill="#8290a5">Encontrá productos y agregalos al carrito</text>
+  <rect x="258" y="184" width="568" height="50" rx="10" fill="#fff" stroke="#e2e7f0"/>
+  <circle cx="282" cy="209" r="7" fill="none" stroke="#8995a8" stroke-width="2"/>
+  <path d="m287 214 6 6" stroke="#8995a8" stroke-width="2"/>
+  <text x="308" y="214" font-family="Arial,sans-serif" font-size="14" fill="#9aa5b5">Buscar producto por nombre o código...</text>
+  <g font-family="Arial,sans-serif">
+    <g>
+      <rect x="258" y="258" width="178" height="174" rx="12" fill="#fff"/>
+      <rect x="274" y="274" width="146" height="86" rx="9" fill="#fff1df"/>
+      <text x="328" y="332" font-size="35">☕</text>
+      <text x="274" y="386" font-size="13" font-weight="700" fill="#344158">Café molido 500g</text>
+      <text x="274" y="414" font-size="14" font-weight="700" fill="#4f46e5">$ 4.200</text>
+    </g>
+    <g>
+      <rect x="452" y="258" width="178" height="174" rx="12" fill="#fff"/>
+      <rect x="468" y="274" width="146" height="86" rx="9" fill="#e7f0ff"/>
+      <text x="522" y="332" font-size="35">🧴</text>
+      <text x="468" y="386" font-size="13" font-weight="700" fill="#344158">Detergente limón</text>
+      <text x="468" y="414" font-size="14" font-weight="700" fill="#4f46e5">$ 2.850</text>
+    </g>
+    <g>
+      <rect x="646" y="258" width="178" height="174" rx="12" fill="#fff"/>
+      <rect x="662" y="274" width="146" height="86" rx="9" fill="#fce8ee"/>
+      <text x="716" y="332" font-size="35">🍪</text>
+      <text x="662" y="386" font-size="13" font-weight="700" fill="#344158">Galletitas de avena</text>
+      <text x="662" y="414" font-size="14" font-weight="700" fill="#4f46e5">$ 1.500</text>
+    </g>
+  </g>
+  <rect x="858" y="184" width="292" height="496" rx="12" fill="#fff"/>
+  <text x="882" y="222" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#182235">Venta actual</text>
+  <rect x="882" y="246" width="244" height="42" rx="8" fill="#f5f6fa"/>
+  <text x="897" y="273" font-family="Arial,sans-serif" font-size="13" fill="#8290a5">Cliente de mostrador</text>
+  <g font-family="Arial,sans-serif">
+    <text x="882" y="329" font-size="13" font-weight="700" fill="#344158">Café molido 500g</text>
+    <text x="882" y="351" font-size="12" fill="#9aa5b5">1 × $ 4.200</text>
+    <text x="1080" y="340" font-size="13" fill="#344158">$ 4.200</text>
+    <path d="M882 371h244" stroke="#edf0f5"/>
+    <text x="882" y="407" font-size="13" font-weight="700" fill="#344158">Galletitas de avena</text>
+    <text x="882" y="429" font-size="12" fill="#9aa5b5">2 × $ 1.500</text>
+    <text x="1080" y="418" font-size="13" fill="#344158">$ 3.000</text>
+    <path d="M882 450h244" stroke="#edf0f5"/>
+    <text x="882" y="487" font-size="13" fill="#69768c">Subtotal</text><text x="1072" y="487" font-size="13" fill="#344158">$ 7.200</text>
+    <text x="882" y="521" font-size="13" fill="#69768c">Descuento</text><text x="1072" y="521" font-size="13" fill="#344158">$ 0</text>
+    <path d="M882 541h244" stroke="#edf0f5"/>
+    <text x="882" y="577" font-size="16" font-weight="700" fill="#182235">Total</text><text x="1053" y="577" font-size="18" font-weight="700" fill="#4f46e5">$ 7.200</text>
+  </g>
+  <rect x="882" y="608" width="244" height="48" rx="9" fill="#4f46e5"/>
+  <text x="948" y="638" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#fff">Cobrar venta</text>
+</svg>
