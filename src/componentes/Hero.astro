@@ -2,29 +2,64 @@
 import { Github, Linkedin, ArrowUpRight, Terminal } from 'lucide-astro';
 ---
 
-<section class="hero">
-    <div class="badge"><Terminal size={16} /> Técnica Universitaria en Programación · UTN</div>
-    <h1>Hola, soy <strong>Ana Luz Ulariaga</strong></h1>
-    <h2>Desarrolladora de software y soluciones web en formación</h2>
-    <p>Me espacializo en desarrollo web con tecnologías modernas y disfruto aprender algo nuevo cada día. 
-        Mi objetivo es crear experiencias digitales atractivas y funcionales que impacten positivamente en 
-        la vida de las personas.
-    </p>
-    <div class="contenedor-botones">
-        <a href="#proyectos" class="btn-primario">Ver proyectos <ArrowUpRight size={18} /></a>
-        <a href="https://github.com/anitassj" target="_blank" rel="noopener" class="btn-secundario"><Github size={18} />GitHub</a>
-        <a href="https://www.linkedin.com/in/ana-luz-ulariaga" target="_blank" rel="noopener" class="btn-secundario"><Linkedin size={18} />LinkedIn</a>
+<section id="inicio" class="hero">
+    <div class="hero-contenido">
+        <div class="hero-texto">
+            <div class="badge"><Terminal size={16} /> Técnica Universitaria en Programación · UTN</div>
+            <h1>Hola, soy <strong>Ana Luz Ulariaga</strong></h1>
+            <h2>Desarrolladora de Software Full Stack y Soluciones Web</h2>
+            <p>Me espacializo en desarrollo web con tecnologías modernas y disfruto aprender algo nuevo cada día.
+                Mi objetivo es crear experiencias digitales atractivas y funcionales que impacten positivamente en
+                la vida de las personas.
+            </p>
+            <div class="contenedor-botones">
+                <a href="#proyectos" class="btn-primario">Ver proyectos <ArrowUpRight size={18} /></a>
+                <a href="https://github.com/anitassj" target="_blank" rel="noopener" class="btn-secundario"><Github size={18} />GitHub</a>
+                <a href="https://www.linkedin.com/in/ana-luz-ulariaga" target="_blank" rel="noopener" class="btn-secundario"><Linkedin size={18} />LinkedIn</a>
+            </div>
+        </div>
+        <div class="hero-imagen">
+            <img src={`${import.meta.env.BASE_URL}/imagenes/principal.png`} alt="Ilustración trabajando en una computadora" fetchpriority="high" />
+        </div>
     </div>
 </section>
 
 <style>
-    .hero { 
-        padding: 4rem 1rem; 
-        text-align: center; 
+    .hero {
+        max-width: 72rem;
+        margin-inline: auto;
+        padding: 1.25rem;
+    }
+
+    .hero-contenido {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .hero-texto {
+        min-width: 0;
+        text-align: center;
+    }
+
+    .hero-imagen {
+        display: flex;
+        justify-content: center;
+        min-width: 0;
+    }
+
+    .hero-imagen img {
+        display: block;
+        width: min(100%, 34rem);
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 1rem 2rem rgb(0 0 0 / 25%));
     }
 
     .contenedor-botones { 
         display: flex; 
+        flex-wrap: wrap;
         gap: 1rem; 
         justify-content: center; 
         margin-top: 1.5rem; 
@@ -39,7 +74,7 @@ import { Github, Linkedin, ArrowUpRight, Terminal } from 'lucide-astro';
 
     h1 { 
         color: var(--color-1); 
-        /* font-size: 3.5rem; */
+        font-size: clamp(2rem, 5vw, 3.5rem);
     }
 
     strong { 
@@ -98,6 +133,21 @@ import { Github, Linkedin, ArrowUpRight, Terminal } from 'lucide-astro';
         background-color: var(--color-3);
         color: var(--color-1);
         transform: translateY(-2px);
+    }
+
+    @media (min-width: 768px) {
+        .hero-contenido {
+            grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+            gap: 2.5rem;
+        }
+
+        .hero-texto {
+            text-align: left;
+        }
+
+        .contenedor-botones {
+            justify-content: flex-start;
+        }
     }
 
 </style>

@@ -1,0 +1,73 @@
+---
+import { ShieldCheck, Users, Lightbulb } from 'lucide-astro';
+---
+
+<section id="sobre-mi" class="sobre-mi" aria-labelledby="sobre-mi-titulo">
+    <p class="etiqueta">Sobre mí</p>
+    <h2 id="sobre-mi-titulo">Mi recorrido y lo que me impulsa</h2>
+    <p>
+        Soy Técnica Universitaria en Programación. Durante mi formación desarrollé proyectos que me
+        permitieron aplicar lo aprendido y fortalecer mis habilidades en desarrollo web, bases de
+        datos y lógica de programación.
+    </p>
+    <p>
+        Disfruto resolver problemas, trabajar en equipo y seguir aprendiendo. Me motiva participar
+        en proyectos reales y aportar con mi trabajo.
+    </p>
+    <ul class="valores" aria-label="Mis fortalezas">
+        <li><ShieldCheck size={17} /> Responsable</li>
+        <li><Users size={17} /> Trabajo en equipo</li>
+        <li><Lightbulb size={17} /> Aprendizaje continuo</li>
+    </ul>
+</section>
+
+<style>
+    .sobre-mi {
+        min-width: 0;
+    }
+
+    .etiqueta {
+        margin: 0 0 0.4rem;
+        color: var(--color-3);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        margin: 0 0 1rem;
+        color: var(--color-1);
+        font-size: clamp(1.25rem, 2vw, 1.6rem);
+        line-height: 1.25;
+    }
+
+    p:not(.etiqueta) {
+        margin: 0 0 0.75rem;
+        color: var(--color-2);
+        font-size: 0.85rem;
+        line-height: 1.65;
+    }
+
+    .valores {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
+        margin: 1.25rem 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .valores li {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--color-2);
+        font-size: 0.72rem;
+    }
+
+    .valores svg {
+        color: var(--color-3);
+        flex: 0 0 auto;
+    }
+</style>

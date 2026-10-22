@@ -1,0 +1,180 @@
+---
+import { Github, Linkedin, Mail, Send } from 'lucide-astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer" id="contacto">
+    <div class="panel-contacto">
+        <div class="icono-contacto" aria-hidden="true">
+            <Mail size={25} />
+        </div>
+        <div class="mensaje">
+            <h2>¿Hablamos?</h2>
+            <p>Estoy abierta a nuevas oportunidades, proyectos y colaboraciones.</p>
+        </div>
+        <a
+            class="boton-contacto"
+            href="https://www.linkedin.com/in/ana-luz-ulariaga"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Contactarme por LinkedIn"
+        >
+            <Send size={16} />
+            Contactame
+        </a>
+        <nav class="redes" aria-label="Redes sociales">
+            <a href="https://github.com/anitassj" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <Github size={18} />
+            </a>
+            <a href="https://www.linkedin.com/in/ana-luz-ulariaga" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <Linkedin size={18} />
+            </a>
+        </nav>
+    </div>
+    <p class="copyright">
+        © {year} Ana Luz Ulariaga <span aria-hidden="true">·</span>
+        Técnica Universitaria en Programación <span aria-hidden="true">·</span> UTN
+    </p>
+</footer>
+
+<style>
+    .footer {
+        width: min(100% - 2.5rem, 72rem);
+        margin: 0 auto;
+        padding: 0 0 1.25rem;
+    }
+
+    .panel-contacto {
+        position: relative;
+        isolation: isolate;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        min-height: 5.25rem;
+        overflow: hidden;
+        padding: 1rem 1.5rem;
+        border: 1px solid rgb(167 139 250 / 22%);
+        border-radius: 1rem;
+        background:
+            radial-gradient(ellipse at 0% 100%, rgb(139 92 246 / 48%), transparent 28%),
+            radial-gradient(ellipse at 100% 0%, rgb(124 58 237 / 36%), transparent 30%),
+            linear-gradient(110deg, #211858, #17143f 65%, #201752);
+        box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 18%);
+    }
+
+    .icono-contacto {
+        display: grid;
+        width: 2.75rem;
+        height: 2.75rem;
+        flex: 0 0 auto;
+        place-items: center;
+        color: #c4b5fd;
+    }
+
+    .mensaje {
+        min-width: 0;
+        flex: 1;
+    }
+
+    h2 {
+        margin: 0 0 0.25rem;
+        color: var(--color-1);
+        font-size: 1rem;
+    }
+
+    .mensaje p {
+        margin: 0;
+        color: var(--color-2);
+        font-size: 0.75rem;
+        line-height: 1.5;
+    }
+
+    .boton-contacto,
+    .redes a {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .boton-contacto {
+        gap: 0.5rem;
+        padding: 0.65rem 1rem;
+        border: 1px solid var(--color-3);
+        border-radius: 0.55rem;
+        background: var(--color-3);
+        color: var(--color-1);
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .boton-contacto:hover {
+        transform: translateY(-2px);
+        background: var(--color-4);
+    }
+
+    .redes {
+        display: flex;
+        gap: 0.5rem;
+        margin-left: 0.25rem;
+    }
+
+    .redes a {
+        width: 2.25rem;
+        height: 2.25rem;
+        border: 1px solid rgb(167 139 250 / 28%);
+        border-radius: 0.55rem;
+        color: var(--color-2);
+    }
+
+    .redes a:hover {
+        transform: translateY(-2px);
+        border-color: var(--color-3);
+        background: rgb(139 92 246 / 16%);
+        color: var(--color-1);
+    }
+
+    .copyright {
+        margin: 1rem 0 0;
+        color: rgb(221 214 254 / 72%);
+        font-size: 0.65rem;
+        text-align: center;
+    }
+
+    .copyright span {
+        padding-inline: 0.35rem;
+        color: var(--color-3);
+    }
+
+    @media (max-width: 640px) {
+        .panel-contacto {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.75rem;
+            padding: 1rem;
+        }
+
+        .icono-contacto {
+            grid-row: span 3;
+        }
+
+        .boton-contacto {
+            justify-self: start;
+            grid-column: 2;
+        }
+
+        .redes {
+            grid-column: 2;
+            grid-row: 3;
+            justify-self: end;
+            align-self: center;
+        }
+
+        .copyright {
+            line-height: 1.7;
+        }
+    }
+</style>

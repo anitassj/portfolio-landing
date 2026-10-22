@@ -1,0 +1,109 @@
+---
+import { CodeXml } from 'lucide-astro';
+---
+
+<header class="header">
+    <nav class="nav" aria-label="Navegación principal">
+        <a class="marca" href="#inicio" aria-label="Ana Luz Ulariaga, inicio">
+            <CodeXml size={22} />
+            <span>Ana Luz Ulariaga</span>
+        </a>
+        <ul class="enlaces">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#tecnologias">Tecnologías</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<style>
+    .header {
+        position: sticky;
+        z-index: 10;
+        top: 0;
+        border-bottom: 1px solid rgb(167 139 250 / 14%);
+        background: var(--color-5);
+        box-shadow: 0 0.5rem 1.5rem rgb(7 5 25 / 35%), 0 1px 0 rgb(167 139 250 / 8%);
+        backdrop-filter: blur(16px);
+    }
+
+    .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        width: min(100% - 2rem, 72rem);
+        min-height: 3.75rem;
+        margin-inline: auto;
+    }
+
+    .marca {
+        display: inline-flex;
+        flex: 0 0 auto;
+        align-items: center;
+        gap: 0.55rem;
+        color: var(--color-1);
+        font-size: 0.85rem;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .marca svg {
+        color: var(--color-3);
+    }
+
+    .enlaces {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: clamp(0.6rem, 2vw, 1.5rem);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .enlaces a {
+        display: block;
+        padding: 0.6rem 0;
+        border-bottom: 2px solid transparent;
+        color: var(--color-2);
+        font-size: 0.78rem;
+        text-decoration: none;
+        transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .enlaces a:hover,
+    .enlaces a:focus-visible {
+        border-color: var(--color-3);
+        color: var(--color-1);
+    }
+
+    .marca:focus-visible,
+    .enlaces a:focus-visible {
+        outline: 2px solid var(--color-2);
+        outline-offset: 4px;
+    }
+
+    @media (max-width: 600px) {
+        .nav {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding-block: 0.7rem;
+        }
+
+        .enlaces {
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 0 1rem;
+            width: 100%;
+        }
+
+        .enlaces a {
+            padding-block: 0.35rem;
+            font-size: 0.72rem;
+        }
+    }
+</style>

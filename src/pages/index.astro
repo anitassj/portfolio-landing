@@ -1,11 +1,13 @@
 ---
 import Hero from '../componentes/Hero.astro';
+import Header from '../componentes/Header.astro';
 import Proyecto from '../componentes/Proyectos.astro';
+import SobreMi from '../componentes/SobreMi.astro';
 import Stack from '../componentes/Stack.astro';
 import Contacto from '../componentes/Contacto.astro';
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -17,23 +19,42 @@ import Contacto from '../componentes/Contacto.astro';
 
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Portafolio | Desarrolladora Ana Luz Ulariaga</title>
+		<title>Portafolio | Ana Luz Ulariaga</title>
 	</head>
 	<body>
+		<Header />
 		<Hero />
 		<Proyecto />
-		<Stack />
+		<div class="sobre-y-stack">
+			<SobreMi />
+			<Stack />
+		</div>
 		<Contacto />
 	</body>
 </html>
 
 <style is:global>
 	body {
+		position: relative;
+		isolation: isolate;
 		margin: 0;
 		padding: 0;
 		font-family: 'Inter', sans-serif;
 		background-color: var(--color-5);
 		color: var(--color-1);           
+	}
+
+	body::before {
+		position: fixed;
+		z-index: -1;
+		inset: -15%;
+		content: '';
+		pointer-events: none;
+		background:
+			radial-gradient(ellipse at 15% 15%, rgb(167 139 250 / 42%), transparent 38%),
+			radial-gradient(ellipse at 85% 35%, rgb(124 58 237 / 34%), transparent 42%),
+			radial-gradient(ellipse at 50% 90%, rgb(139 92 246 / 26%), transparent 40%);
+		filter: blur(58px) brightness(1.2);
 	}
 
 	:root {
@@ -42,6 +63,23 @@ import Contacto from '../componentes/Contacto.astro';
 		--color-3: #8B5CF6;
 		--color-4: #5B21B6;
 		--color-5: #1E1B4B;
+	}
+
+	.sobre-y-stack {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 2.5rem;
+		width: min(100% - 2.5rem, 72rem);
+		margin: 0 auto;
+		padding: 2rem 0 3rem;
+	}
+
+	@media (min-width: 800px) {
+		.sobre-y-stack {
+			grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+			align-items: start;
+			gap: 3rem;
+		}
 	}
 
 </style>

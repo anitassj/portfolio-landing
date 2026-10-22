@@ -1,96 +1,160 @@
 ---
-    import { 
-    ShoppingBag, 
-    Database, 
-    Server, 
-    Cpu, 
-    Code, 
-    Palette, 
-    FileText, 
-    ExternalLink,
-    ChevronLeft,
-    ChevronRight,
-    X
+    import {
+        ShoppingBag,
+        Code,
+        ExternalLink,
+        ChevronLeft,
+        ChevronRight,
+        X
     } from 'lucide-astro';
 import EyeAstroComponent from 'lucide-astro/Eye';
+
+const proyectos = [
+    {
+        id: 'merkatu-pos',
+        titulo: 'Sistema POS (Punto de Venta) "Merkatu"',
+        descripcion: 'Sistema web de gestión comercial para controlar inventario, registrar ventas y administrar productos, vencimientos, reportes, empleados, caja y etiquetas de precios.',
+        tecnologias: ['MySQL', 'Node.js', 'Express', 'JavaScript', 'CSS', 'EJS'],
+        icono: 'pos',
+        carpetaImagenes: 'merkatu-sistema',
+        prefijoImagen: 'merkatu-sistema',
+        cantidadImagenes: 18,
+        textoImagen: 'Sección',
+        repositorio: 'https://github.com/anitassj',
+        proyecto: 'https://github.com/anitassj'
+    },
+    {
+        id: 'merkatu-landing',
+        titulo: 'Landing page de Merkatu',
+        descripcion: 'Landing page creada para presentar y promocionar el sistema POS Merkatu, con información sobre sus funciones, requisitos, precios y formas de contacto.',
+        tecnologias: ['Astro', 'HTML', 'CSS', 'JavaScript'],
+        icono: 'landing',
+        carpetaImagenes: 'merkatu',
+        prefijoImagen: 'merkatu',
+        cantidadImagenes: 9,
+        textoImagen: 'Sección',
+        repositorio: 'https://github.com/anitassj',
+        proyecto: 'null'
+    },
+    {
+        id: 'prisma-seguros',
+        titulo: 'Prisma Seguros',
+        descripcion: 'Proyecto final universitario para las materias Metodología de Sistemas I y Laboratorio de Computación IV de la Tecnicatura Universitaria en Programación de la UTN FRSN. El proyecto corresponde un sistema degestión de una aseguradora denominada "Prisma Seguros".',
+        tecnologias: ['MySQL', 'Node.js', 'Express', 'JavaScript', 'CSS', 'EJS'],
+        icono: 'academico',
+        carpetaImagenes: 'prisma',
+        prefijoImagen: 'prisma',
+        cantidadImagenes: 22,
+        textoImagen: 'Sección',
+        repositorio: 'https://github.com/anitassj',
+        proyecto: null
+    }
+].map((proyecto) => ({
+    ...proyecto,
+    dialogId: `galeria-${proyecto.id}`,
+    imagenes: Array.from({ length: proyecto.cantidadImagenes }, (_, index) => ({
+        src: `${import.meta.env.BASE_URL}/imagenes/${proyecto.carpetaImagenes}/${proyecto.prefijoImagen}-${index + 1}.png`,
+        alt: `${proyecto.textoImagen} ${index + 1} de ${proyecto.titulo}`
+    }))
+}));
 ---
 
 <section id="proyectos" class="proyectos">
     <h2>Proyectos</h2>
-    <div class="tarjeta">
-        <div class="header-tarjeta">
-            <ShoppingBag size={32} />
-            <h3>Sistema POS (punto de Venta) "Merkatu"</h3>
-        </div>
-        <p>Sistema web de gestión comercial para control de inventario, registro de ventas, administración 
-            de productos con persistencia en base de datos, control  de vencimientos, 
-            reportes de kpis, gestión de emepleados, control de caja, generación de etiquetas de precio
-            para comercios.</p>
-        <div class="tags">
-            <span><Database size={14} /> MySQL</span>
-            <span><Server size={14} /> NodeJS</span>
-            <span><Cpu size={14} /> Express</span>
-            <span><Code size={14} /> JavaScript</span>
-            <span><Palette size={14} /> CSS</span>
-            <span><FileText size={14} /> EJS</span>
-        </div>
-
-        <div class="acciones">
-            <a href="https://github.com/anitassj" target="_blank" rel="noopener" class="btn-link">
-                Visitar repositorio <ExternalLink size={16} />
-            </a>
-            <!-- ? recordar: modificar con el link del proyecto -->
-            <a href="https://github.com/anitassj" target="_blank" rel="noopener" class="btn-link">
-                Visitar proyecto <ExternalLink size={16} />
-            </a>
-            <button type="button" class="btn-link" aria-haspopup="dialog" aria-controls="galeria-merkatu">
-                Vista rápida <EyeAstroComponent size={16} />
-            </button>
-        </div>
-    </div>
-
-    <dialog class="galeria" id="galeria-merkatu" aria-labelledby="titulo-galeria">
-        <div class="galeria-contenido">
-            <header class="galeria-header">
-                <div>
-                    <p class="galeria-etiqueta">Vista rápida</p>
-                    <h3 id="titulo-galeria">Sistema POS Merkatu</h3>
+    <p class="carrusel-ayuda">Usá las flechas o deslizá para ver los proyectos.</p>
+    <div class="carrusel-marco">
+        <button type="button" class="carrusel-control carrusel-anterior" aria-label="Proyecto anterior" disabled>
+            <ChevronLeft size={24} />
+        </button>
+        <div
+            class="carrusel-proyectos"
+            role="region"
+            aria-label="Carrusel de proyectos"
+            aria-roledescription="carrusel"
+            tabindex="0"
+        >
+            {proyectos.map((proyecto) => (
+            <article class="tarjeta" aria-labelledby={`titulo-${proyecto.id}`}>
+                <div class="header-tarjeta">
+                    {proyecto.icono === 'pos' ? <ShoppingBag size={32} /> : <Code size={32} />}
+                    <h3 id={`titulo-${proyecto.id}`}>{proyecto.titulo}</h3>
                 </div>
-                <button type="button" class="galeria-cerrar" aria-label="Cerrar galería">
-                    <X size={20} />
-                </button>
-            </header>
+                <p>{proyecto.descripcion}</p>
+                {proyecto.tecnologias.length > 0 && (
+                    <div class="tags" aria-label="Tecnologías utilizadas">
+                        {proyecto.tecnologias.map((tecnologia) => <span>{tecnologia}</span>)}
+                    </div>
+                )}
 
-            <div class="galeria-visor">
-                <figure class="galeria-slide" aria-label="1 de 3: Panel principal">
-                    <img src="/imagenes/merkatu/panel-demo.svg" alt="Demo del panel principal de Merkatu con resumen de ventas y productos" />
-                    <figcaption>Panel principal</figcaption>
-                </figure>
-                <figure class="galeria-slide" aria-label="2 de 3: Gestión de inventario" hidden>
-                    <img src="/imagenes/merkatu/inventario-demo.svg" alt="Demo de la pantalla de inventario de Merkatu con una lista de productos" />
-                    <figcaption>Gestión de inventario</figcaption>
-                </figure>
-                <figure class="galeria-slide" aria-label="3 de 3: Registro de ventas" hidden>
-                    <img src="/imagenes/merkatu/ventas-demo.svg" alt="Demo de la pantalla de ventas de Merkatu con el detalle de una compra" />
-                    <figcaption>Registro de ventas</figcaption>
-                </figure>
+                <div class="acciones">
+                    {proyecto.repositorio && (
+                        <a href={proyecto.repositorio} target="_blank" rel="noopener noreferrer" class="btn-link">
+                            Visitar repositorio <ExternalLink size={16} />
+                        </a>
+                    )}
+                    {proyecto.proyecto && (
+                        <a href={proyecto.proyecto} target="_blank" rel="noopener noreferrer" class="btn-link">
+                            Visitar proyecto <ExternalLink size={16} />
+                        </a>
+                    )}
+                    <button
+                        type="button"
+                        class="btn-link"
+                        aria-haspopup="dialog"
+                        aria-controls={proyecto.dialogId}
+                        data-dialog-target={proyecto.dialogId}
+                    >
+                        Vista rápida <EyeAstroComponent size={16} />
+                    </button>
+                </div> 
 
-                <button type="button" class="galeria-control galeria-anterior" aria-label="Imagen anterior">
-                    <ChevronLeft size={22} />
-                </button>
-                <button type="button" class="galeria-control galeria-siguiente" aria-label="Imagen siguiente">
-                    <ChevronRight size={22} />
-                </button>
-            </div>
-            <p class="galeria-contador" aria-live="polite">1 / 3</p>
+                <dialog class="galeria" id={proyecto.dialogId} aria-labelledby={`titulo-${proyecto.dialogId}`}>
+                    <div class="galeria-contenido">
+                        <header class="galeria-header">
+                            <div>
+                                
+                                <h3 id={`titulo-${proyecto.dialogId}`}>{proyecto.titulo}</h3>
+                            </div>
+                            <button type="button" class="galeria-cerrar" aria-label="Cerrar galería">
+                                <X size={20} />
+                            </button>
+                        </header>
+
+                        <div class="galeria-visor">
+                            {proyecto.imagenes.map((imagen, index) => (
+                                <figure
+                                    class="galeria-slide"
+                                    aria-label={`${index + 1} de ${proyecto.imagenes.length}: ${proyecto.textoImagen} ${index + 1}`}
+                                    hidden={index !== 0}
+                                >
+                                    <img src={imagen.src} alt={imagen.alt} loading="lazy" decoding="async" />
+                                    <figcaption>{proyecto.textoImagen} {index + 1}</figcaption>
+                                </figure>
+                            ))}
+
+                            <button type="button" class="galeria-control galeria-anterior" aria-label="Imagen anterior">
+                                <ChevronLeft size={22} />
+                            </button>
+                            <button type="button" class="galeria-control galeria-siguiente" aria-label="Imagen siguiente">
+                                <ChevronRight size={22} />
+                            </button>
+                        </div>
+                        <p class="galeria-contador" aria-live="polite">1 / {proyecto.imagenes.length}</p>
+                    </div>
+                </dialog>
+            </article>
+            ))}
         </div>
-    </dialog>
+        <button type="button" class="carrusel-control carrusel-siguiente" aria-label="Proyecto siguiente">
+            <ChevronRight size={24} />
+        </button>
+    </div>
 </section>
 
 <style>
-    .proyectos { 
-        padding: 4rem 1rem; 
-        max-width: 800px; 
+    .proyectos {
+        padding: 0 1rem 4rem; 
+        /* max-width: 1000px; */
         margin: 0 auto; 
     }
 
@@ -100,14 +164,85 @@ import EyeAstroComponent from 'lucide-astro/Eye';
         margin-bottom: 2rem; 
     }
 
+    .carrusel-ayuda {
+        margin: -1rem 0 1rem;
+        text-align: center;
+        font-size: 0.9rem;
+        opacity: 0.8;
+    }
+
+    .carrusel-marco {
+        position: relative;
+    }
+
+    .carrusel-proyectos {
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+        padding: 0.25rem 3.25rem 1rem;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 3.25rem;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+    }
+
+    .carrusel-proyectos::-webkit-scrollbar {
+        display: none;
+    }
+
+    .carrusel-control {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        display: grid;
+        place-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: 0;
+        color: var(--color-1);
+        background: var(--color-3);
+        border: 1px solid var(--color-4);
+        border-radius: 50%;
+        cursor: pointer;
+        transform: translateY(-50%);
+        transition: opacity 0.2s ease, background-color 0.2s ease;
+    }
+
+    .carrusel-control:hover:not(:disabled) {
+        background: var(--color-4);
+    }
+
+    .carrusel-control:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    .carrusel-control:focus-visible {
+        outline: 2px solid var(--color-1);
+        outline-offset: 3px;
+    }
+
+    .carrusel-anterior {
+        left: 0;
+    }
+
+    .carrusel-siguiente {
+        right: 0;
+    }
+
     /* contenedor de la tarjeta */
     .tarjeta { 
+        flex: 0 0 min(100%, 760px);
+        box-sizing: border-box;
         background-color: var(--color-5); 
         border: 1px solid var(--color-4); 
         border-radius: 12px; 
         padding: 2rem; 
         transition: border-color 0.3s ease; 
         justify-content: center;
+        text-align: center;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
     }
 
     .tarjeta:hover { 
@@ -180,6 +315,12 @@ import EyeAstroComponent from 'lucide-astro/Eye';
         background-color: var(--color-3);
     }
 
+    .btn-link:focus-visible,
+    .galeria button:focus-visible {
+        outline: 2px solid var(--color-1);
+        outline-offset: 3px;
+    }
+
     /* modal para la galería de imagenes del botón 'vista rápida'  */
     .galeria {
         width: min(900px, calc(100% - 2rem));
@@ -194,7 +335,6 @@ import EyeAstroComponent from 'lucide-astro/Eye';
     }
 
     .galeria::backdrop {
-        background: rgb(8 12 24 / 78%);
         backdrop-filter: blur(4px);
     }
 
@@ -244,9 +384,7 @@ import EyeAstroComponent from 'lucide-astro/Eye';
     .galeria-visor {
         position: relative;
         overflow: hidden;
-        border: 1px solid var(--color-4);
         border-radius: 12px;
-        background: #101827;
     }
 
     .galeria-slide {
@@ -301,19 +439,50 @@ import EyeAstroComponent from 'lucide-astro/Eye';
 </style>
 
 <script>
-    // modal para la galería de imagenes del botón 'vista rápida'
-    const dialog = document.querySelector<HTMLDialogElement>('#galeria-merkatu');
+    document.querySelectorAll<HTMLElement>('.carrusel-marco').forEach((carousel) => {
+        const track = carousel.querySelector<HTMLElement>('.carrusel-proyectos');
+        const previousButton = carousel.querySelector<HTMLButtonElement>('.carrusel-anterior');
+        const nextButton = carousel.querySelector<HTMLButtonElement>('.carrusel-siguiente');
 
-    if (dialog) {
+        if (!track || !previousButton || !nextButton) return;
+
+        const updateControls = () => {
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            previousButton.disabled = track.scrollLeft <= 1;
+            nextButton.disabled = track.scrollLeft >= maxScroll - 1;
+        };
+
+        const scrollByCard = (direction: -1 | 1) => {
+            const card = track.querySelector<HTMLElement>('.tarjeta');
+            if (!card) return;
+
+            const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+            track.scrollBy({
+                left: direction * (card.getBoundingClientRect().width + gap),
+                behavior: 'smooth'
+            });
+        };
+
+        previousButton.addEventListener('click', () => scrollByCard(-1));
+        nextButton.addEventListener('click', () => scrollByCard(1));
+        track.addEventListener('scroll', updateControls, { passive: true });
+        window.addEventListener('resize', updateControls);
+        updateControls();
+    });
+
+    document.querySelectorAll<HTMLDialogElement>('.galeria').forEach((dialog) => {
         const slides = Array.from(dialog.querySelectorAll<HTMLElement>('.galeria-slide'));
         const counter = dialog.querySelector<HTMLElement>('.galeria-contador');
-        const openButton = document.querySelector<HTMLButtonElement>('[aria-controls="galeria-merkatu"]');
+        const openButton = document.querySelector<HTMLButtonElement>(
+            `[data-dialog-target="${dialog.id}"]`
+        );
         const closeButton = dialog.querySelector<HTMLButtonElement>('.galeria-cerrar');
         const previousButton = dialog.querySelector<HTMLButtonElement>('.galeria-anterior');
         const nextButton = dialog.querySelector<HTMLButtonElement>('.galeria-siguiente');
         let currentIndex = 0;
 
         const showSlide = (index: number) => {
+            if (slides.length === 0) return;
             currentIndex = (index + slides.length) % slides.length;
             slides.forEach((slide, slideIndex) => {
                 slide.hidden = slideIndex !== currentIndex;
@@ -333,5 +502,5 @@ import EyeAstroComponent from 'lucide-astro/Eye';
         dialog.addEventListener('click', (event) => {
             if (event.target === dialog) dialog.close();
         });
-    }
+    });
 </script>
