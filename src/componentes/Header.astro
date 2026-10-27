@@ -8,7 +8,18 @@ import { CodeXml } from 'lucide-astro';
             <CodeXml size={22} />
             <span>Ana Luz Ulariaga</span>
         </a>
-        <ul class="enlaces">
+        <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Abrir menú de navegación"
+            aria-expanded="false"
+            aria-controls="enlaces-principales"
+        >
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="enlaces" id="enlaces-principales">
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#proyectos">Proyectos</a></li>
             <li><a href="#sobre-mi">Sobre mí</a></li>
@@ -81,29 +92,110 @@ import { CodeXml } from 'lucide-astro';
     }
 
     .marca:focus-visible,
-    .enlaces a:focus-visible {
+    .enlaces a:focus-visible,
+    .menu-toggle:focus-visible {
         outline: 2px solid var(--color-2);
         outline-offset: 4px;
     }
 
+    .menu-toggle {
+        display: none;
+    }
+
     @media (max-width: 600px) {
         .nav {
-            align-items: flex-start;
+            flex-wrap: wrap;
+            min-height: 3.75rem;
+            padding-block: 0.35rem;
+        }
+
+        .menu-toggle {
+            display: flex;
+            width: 2.75rem;
+            height: 2.75rem;
             flex-direction: column;
-            gap: 0.25rem;
-            padding-block: 0.7rem;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            padding: 0;
+            border: 1px solid rgb(167 139 250 / 35%);
+            border-radius: 0.5rem;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 1.2rem;
+            height: 2px;
+            border-radius: 2px;
+            background: var(--color-1);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .menu-toggle[aria-expanded="true"] span:first-child {
+            transform: translateY(0.4rem) rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle[aria-expanded="true"] span:last-child {
+            transform: translateY(-0.4rem) rotate(-45deg);
         }
 
         .enlaces {
-            justify-content: flex-start;
-            flex-wrap: wrap;
-            gap: 0 1rem;
+            display: none;
+            align-items: stretch;
+            flex-direction: column;
+            gap: 0.25rem;
             width: 100%;
+            padding-block: 0.25rem 0.75rem;
+        }
+
+        .enlaces.abierto {
+            display: flex;
         }
 
         .enlaces a {
-            padding-block: 0.35rem;
-            font-size: 0.72rem;
+            padding: 0.65rem 0.25rem;
+            font-size: 0.85rem;
         }
     }
 </style>
+
+<script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navigationLinks = document.querySelector('.enlaces');
+
+    if (menuToggle instanceof HTMLButtonElement && navigationLinks instanceof HTMLUListElement) {
+        const closeMenu = () => {
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Abrir menú de navegación');
+            navigationLinks.classList.remove('abierto');
+        };
+
+        menuToggle.addEventListener('click', () => {
+            const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+            menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+            menuToggle.setAttribute(
+                'aria-label',
+                isExpanded ? 'Abrir menú de navegación' : 'Cerrar menú de navegación'
+            );
+            navigationLinks.classList.toggle('abierto', !isExpanded);
+        });
+
+        navigationLinks.addEventListener('click', (event) => {
+            if (event.target instanceof HTMLAnchorElement) {
+                closeMenu();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+                closeMenu();
+                menuToggle.focus();
+            }
+        });
+    }
+</script>

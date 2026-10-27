@@ -52,16 +52,23 @@ const proyectos = [
 ].map((proyecto) => ({
     ...proyecto,
     dialogId: `galeria-${proyecto.id}`,
-    imagenes: Array.from({ length: proyecto.cantidadImagenes }, (_, index) => ({
-        src: `${import.meta.env.BASE_URL}/imagenes/${proyecto.carpetaImagenes}/${proyecto.prefijoImagen}-${index + 1}.png`,
-        alt: `${proyecto.textoImagen} ${index + 1} de ${proyecto.titulo}`
-    }))
+    imagenes: Array.from({ length: proyecto.cantidadImagenes }, (_, index) => {
+        const src = `${import.meta.env.BASE_URL}/imagenes/${proyecto.carpetaImagenes}/${proyecto.prefijoImagen}-${index + 1}`;
+        return {
+            src: `${src}.png`,
+            srcSet: `${src}-480.jpg 480w, ${src}-960.jpg 960w`,
+            alt: `${proyecto.textoImagen} ${index + 1} de ${proyecto.titulo}`
+        };
+    })
 }));
 ---
 
 <section id="proyectos" class="proyectos">
     <h2>Proyectos</h2>
-    <p class="carrusel-ayuda">Usá las flechas o deslizá para ver los proyectos.</p>
+    <p class="carrusel-ayuda">
+        <span class="ayuda-movil">Deslizá para ver los proyectos.</span>
+        <span class="ayuda-escritorio">Usá las flechas o deslizá para ver los proyectos.</span>
+    </p>
     <div class="carrusel-marco">
         <button type="button" class="carrusel-control carrusel-anterior" aria-label="Proyecto anterior" disabled>
             <ChevronLeft size={24} />
@@ -127,7 +134,14 @@ const proyectos = [
                                     aria-label={`${index + 1} de ${proyecto.imagenes.length}: ${proyecto.textoImagen} ${index + 1}`}
                                     hidden={index !== 0}
                                 >
-                                    <img src={imagen.src} alt={imagen.alt} loading="lazy" decoding="async" />
+                                    <picture>
+                                        <source
+                                            srcset={imagen.srcSet}
+                                            sizes="(max-width: 640px) calc(100vw - 3rem), 900px"
+                                            type="image/jpeg"
+                                        />
+                                        <img src={imagen.src} alt={imagen.alt} loading="lazy" decoding="async" />
+                                    </picture>
                                     <figcaption>{proyecto.textoImagen} {index + 1}</figcaption>
                                 </figure>
                             ))}
@@ -171,6 +185,10 @@ const proyectos = [
         opacity: 0.8;
     }
 
+    .ayuda-movil {
+        display: none;
+    }
+
     .carrusel-marco {
         position: relative;
     }
@@ -183,6 +201,7 @@ const proyectos = [
         scroll-snap-type: x mandatory;
         scroll-padding-inline: 3.25rem;
         overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
 
@@ -402,6 +421,10 @@ const proyectos = [
         object-fit: contain;
     }
 
+    .galeria-slide picture {
+        display: block;
+    }
+
     .galeria-slide figcaption {
         padding: 0.75rem 1rem;
         text-align: center;
@@ -435,6 +458,80 @@ const proyectos = [
         text-align: center;
         font-size: 0.85rem;
         opacity: 0.8;
+    }
+
+    @media (max-width: 640px) {
+        .ayuda-movil {
+            display: inline;
+        }
+
+        .ayuda-escritorio {
+            display: none;
+        }
+
+        .carrusel-proyectos {
+            padding-inline: 0.25rem;
+            scroll-padding-inline: 0.25rem;
+        }
+
+        .carrusel-control {
+            display: none;
+        }
+
+        .tarjeta {
+            padding: 1.25rem 1rem;
+            text-align: left;
+        }
+
+        .header-tarjeta {
+            justify-content: flex-start;
+        }
+
+        .header-tarjeta h3 {
+            font-size: 1.1rem;
+        }
+
+        .tags {
+            justify-content: flex-start;
+            margin: 1.25rem 0;
+        }
+
+        .acciones {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.75rem;
+        }
+
+        .btn-link {
+            box-sizing: border-box;
+            justify-content: center;
+            width: 100%;
+            min-height: 44px;
+        }
+
+        .galeria {
+            width: calc(100% - 1rem);
+            max-height: calc(100dvh - 1rem);
+            height: calc(100dvh - 1rem);
+            border-radius: 12px;
+        }
+
+        .galeria-contenido {
+            padding: 1rem;
+        }
+
+        .galeria-header h3 {
+            font-size: 1.1rem;
+        }
+
+        .galeria-cerrar {
+            width: 2.75rem;
+            height: 2.75rem;
+        }
+
+        .galeria-slide img {
+            max-height: 55dvh;
+        }
     }
 </style>
 
